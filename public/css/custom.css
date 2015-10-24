@@ -1,26 +1,24 @@
 
+
+
 .container table{
 	border-radius: 10px;
     border: 2px green; 
+    border-collapse: collapse;
 }
 
 
 .container td{
 	border-radius: 10px;
-	border: 2px solid #99CCFF; 
+	border: none; 
 	padding: 6px;
 }
 
-.container th{
-	border-radius: 10px;
-	border: 2px solid #99CCFF; 
-}
 
 
 .jumbotron {
-	margin-bottom: 0px
+	height: 180px;
 }
-
 .jumbotron h1 {
 
 	display: inline;
@@ -30,6 +28,8 @@
 	font: 100px Helvetica, Sans-Serif;
 
 	letter-spacing: -5px;
+
+	margin-left: 100px;
 
 	color: rgba(0,180,200,0.45); 
 
@@ -44,17 +44,15 @@
 .jumbotron h1 {
 	font-size: 100px;
 	margin-top: 0px;
-	margin-bottom: 50px;
+	margin-bottom: 0px;
 }
 
-.jumbotron h2{
-	padding-top: 150px
-}
 
 
 /* Move down content because we have a fixed navbar that is 50px tall */
 body {
   padding-top: 50px;
+  background: #E0FFFF;
 
 }
 /* .jumbotron means all things inside jumbotron, then text-align centers it*/
