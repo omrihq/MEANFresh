@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+
+	<title>Freshness</title>
+</head>
+<body>
+<div class="container" ng-controller='AppCtrl'>
+
+	<table class="table">
+		<thead>
+			<tr>
+ 			 <th>Title</th>
+ 			 <th>Score</th>
+ 			 <th>Date Posted</th>
+ 			 <th>Comments</th>
+ 			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="song in freshlist">
+				<td><a href="{{song.songlink}}">{{song.title}}</a> </td>
+				<td> {{song.score}}</td>
+				<td> {{song.date}}</td>
+				<td> <a href="{{song.postlink}}">{{song.comments}}</a>  </td>
+			</tr>
+		</tbody>
+	</table>
+	
+</div>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+<script type="text/javascript" src="controllers/controller.js"></script>
+
+
+</body>
+</html>
+
