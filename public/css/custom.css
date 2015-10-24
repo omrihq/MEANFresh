@@ -47,8 +47,26 @@
 	margin-bottom: 0px;
 }
 
-
-
+#about {
+	background: rgba(0,180,200,0.1);
+	width: 100%;
+	height: 275px;
+}
+.shop-online {
+	text-align: center;
+	padding-bottom: 0px;
+}
+/*
+.row {
+	margin: auto;
+    width: 30%;
+    padding: 10px;
+}
+.git {
+	margin: auto;
+	 width: 10%;
+}
+*/
 /* Move down content because we have a fixed navbar that is 50px tall */
 body {
   padding-top: 50px;
