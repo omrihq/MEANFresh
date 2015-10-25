@@ -15,14 +15,18 @@ request(url, function (error, response, html) {
       	if (check_fresh(title)) {
       		var comments = $(this).find('li.first a');
       		
-		
       		
       		var link = a.attr('href');
-		
+			
       		var commentammount = parseInt(comments.text()) || 0;
       		var postlink = comments.attr('href');
-		
-      		console.log(title + ": " + link  + "   postlink:   " + postlink + " has this many comments: "  + commentammount);
+			title = cut_fresh(title);
+      		/*
+      		songs.push({
+      			'title'
+			
+
+      		})*/
       	}
     });
   }
@@ -34,6 +38,11 @@ function check_fresh(title) {
 	return title.toLowerCase().indexOf(searchstring)>=0;
 }
 
+
+function cut_fresh(title) {
+	title = title.replace(/(\[fresh)(.*)(\])/i, '');
+	return title;
+}
 
 //Example:
 //"title" : "Xzibit × B-Real × Demrick (Serial Killers) - \"Hang \"Em High\"",
