@@ -1,8 +1,10 @@
 
-var request = require("request"),
+
+
+exports.scrape = function scrape() {
+	var request = require("request"), 
 	cheerio = require("cheerio")
 
-function scrape(){
 	var songs = [];
 	url = "https://www.reddit.com/r/hiphopheads/";
 	request(url, function (error, response, html) {
@@ -41,10 +43,12 @@ function scrape(){
 	      		});
 	      	}
 	    });
+	    console.log(songs);
 	    return songs;
 	  }
 	});
 }
+
 
 function check_fresh(title) {
 	searchstring = "[fresh";
