@@ -15,7 +15,7 @@ https://www.youtube.com/watch?v=kHV7gOHvNdk
 app.use(express.static(__dirname + "/public"));
 
 // Cronjob: http://stackoverflow.com/questions/20499225/i-need-a-nodejs-scheduler-that-allows-for-tasks-at-different-intervals
-var scrapeJob = cron.job("* * */4 * * *", function(){
+var scrapeJob = cron.job("0 0 */4 * * *", function(){
 
 	scraper.scrape(function(songs){
 		for (i = 0; i < songs.length; i++) {
@@ -41,8 +41,8 @@ var scrapeJob = cron.job("* * */4 * * *", function(){
 scrapeJob.start();
 
 
-var deleteJob = cron.job("* * * */1 * *", function() {
-	var four = moment().subtract(1, 'days');
+var deleteJob = cron.job("0 0 0 */2 * *", function() {
+	var four = moment().subtract(2, 'days');
 
 	//http://stackoverflow.com/questions/11973304/mongodb-mongoose-querying-at-a-specific-date
 	db.freshlist.remove({"date": {$lt : four.toISOString()}}, function (err, docs) {
