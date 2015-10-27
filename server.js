@@ -15,7 +15,7 @@ https://www.youtube.com/watch?v=kHV7gOHvNdk
 app.use(express.static(__dirname + "/public"));
 
 // Cronjob: http://stackoverflow.com/questions/20499225/i-need-a-nodejs-scheduler-that-allows-for-tasks-at-different-intervals
-var scrapeJob = cron.job("0 0 */4 * * *", function(){
+var scrapeJob = cron.job("0 * * * * *", function(){
 
 	scraper.scrape(function(songs){
 		for (i = 0; i < songs.length; i++) {
