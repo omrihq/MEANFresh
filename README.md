@@ -1,1 +1,2 @@
 # MEANFresh
+'''npm install'''
