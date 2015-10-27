@@ -56,6 +56,11 @@
 	text-align: center;
 	padding-bottom: 0px;
 }
+
+.row h3,p,a {
+    color: black;
+    text-decoration: none !important;
+}
 /*
 .row {
 	margin: auto;

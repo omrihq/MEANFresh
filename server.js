@@ -42,6 +42,7 @@ scrapeJob.start();
 
 
 var deleteJob = cron.job("0 0 0 */2 * *", function() {
+	//http://momentjs.com/docs/
 	var four = moment().subtract(2, 'days');
 
 	//http://stackoverflow.com/questions/11973304/mongodb-mongoose-querying-at-a-specific-date
