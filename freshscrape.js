@@ -1,6 +1,13 @@
 
 
+/*
+Scraping:
+http://www.smashingmagazine.com/2015/04/web-scraping-with-nodejs/
 
+modularizing: 
+http://www.sitepoint.com/understanding-module-exports-exports-node-js/
+
+*/
 module.exports = {
 	scrape: function(callback) {
 		var request = require("request"), 
@@ -16,7 +23,7 @@ module.exports = {
 		      	var span = $(this).find('span.domain');
 		      	var a = span.prev();
 		      	var title = a.text();
-		      	if (check_fresh(title)) {
+		      	if (title != "" && check_fresh(title)) {
 		      		var comments = $(this).find('li.first a');
 		      		
 		      		
@@ -29,18 +36,20 @@ module.exports = {
 					var scorediv = $(this).find('div.midcol');
 					var score = parseInt(scorediv.find('div.unvoted').text()) || 0;
 		
-					var rawdate = $(this).find('time').attr('title');
+					var rawdate = $(this).find('time').attr('datetime');
 					//REGEX FOR DATE: ([a-z]){3}\s([a-z]){3}\s([0-9][0-9])
-					var date = rawdate.match(/([a-z]){3}\s([a-z]){3}\s([0-9][0-9])/ig)[0];
+					//var date = rawdate.match(/([a-z]){3}\s([a-z]){3}\s([0-9][0-9])/ig)[0];
 					
-		      	
+					//var expireAt = new Date();
+					//expireAt.setMinutes(expireAt.getMinutes()+1);
+
 		      		songs.push({
 		      			'title': title,
 		      			'songlink': link,
 		      			'score': score,
-		      			'date' : date,
+		      			'date' : rawdate,
 		      			'comments' : commentammount,
-		      			'postlink' : postlink
+		      			'postlink' : postlink,
 		      		});
 		      	}
 		    });
@@ -70,5 +79,4 @@ function cut_fresh(title) {
 //	"date" : "10-23-15",
 //	"comments" : "5",
 //	"postlink" : "https://www.reddit.com/r/hiphopheads/comments/3q1znk/fresh_xzibit_breal_demrick_serial_killers_hang_em/"
-
 
