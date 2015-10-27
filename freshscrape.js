@@ -8,6 +8,18 @@ modularizing:
 http://www.sitepoint.com/understanding-module-exports-exports-node-js/
 
 */
+
+/*
+This is where I experienced the most cognitive dissonance. 
+Because I've done so much Python web-scraping, it was hard for me to not be "pythonic",
+and work variable assignments iteratively. The anonymous nested functions here were hard to grasp
+at first, especially once I had to implement the callbacks. Understanding the nested function calls
+and eventually understanding the callback of songs vs. returning the songs was the most
+intellectually redeeming aspect of this project. 
+
+The module exporting was also great. I was about to throw this function into my server but was 
+adamant on finding a way to call it as a module, and eventually stumbled on module.exports. 
+*/
 module.exports = {
 	scrape: function(callback) {
 		var request = require("request"), 
@@ -72,11 +84,4 @@ function cut_fresh(title) {
 }
 
 
-//Example:
-//"title" : "Xzibit × B-Real × Demrick (Serial Killers) - \"Hang \"Em High\"",
-//	"songlink" : "https://soundcloud.com/b-real-12/b-real-x-xzibit-x-demrick-serial-killers-hang-em-high-prod-by-tha-bizness",
-//	"score" : "22",
-//	"date" : "10-23-15",
-//	"comments" : "5",
-//	"postlink" : "https://www.reddit.com/r/hiphopheads/comments/3q1znk/fresh_xzibit_breal_demrick_serial_killers_hang_em/"
 

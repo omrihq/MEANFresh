@@ -15,6 +15,22 @@ https://www.youtube.com/watch?v=kHV7gOHvNdk
 app.use(express.static(__dirname + "/public"));
 
 // Cronjob: http://stackoverflow.com/questions/20499225/i-need-a-nodejs-scheduler-that-allows-for-tasks-at-different-intervals
+/*
+Since I didn't need any intense scheduling, I opted to use a cron job. 
+The callback inside of the scrape function was my first dive into async. 
+Coming from Python, and the most basic functioning knowledge of JS, basically the 
+codecademy equivalent, it was hard to wrap my head around why:
+var songs = scraper.scrape(), when scrape only returned songs
+and that scraper.scrape() would print the songs, but I couldn't 
+access the variable with the export. This lead me to try every permutation
+of Stackoverflow answer possible, and eventually led me to a pretty 
+functioning knowledge of callbacks (I think). 
+
+This specific function gets the song from the scraper, and then adds
+them incrementally to the database. I found the upsert function, and 
+basically "update" on the title query.  
+
+*/
 var scrapeJob = cron.job("0 * * * * *", function(){
 
 	scraper.scrape(function(songs){
@@ -40,8 +56,13 @@ var scrapeJob = cron.job("0 * * * * *", function(){
 });
 scrapeJob.start();
 
-
-var deleteJob = cron.job("0 0 0 */2 * *", function() {
+/*
+Originally, I'd planned to delete and update concurrently, but ultimately figured that
+I would not want to delete as often as I add. It would be nice to have an incrementally increasing
+list, that eventually caps at 4 days. 
+Thus, I use a second cronjob to delete. 
+*/
+var deleteJob = cron.job("0 0 0 */2 * *",  function() {
 	//http://momentjs.com/docs/
 	var four = moment().subtract(2, 'days');
 
@@ -53,7 +74,10 @@ var deleteJob = cron.job("0 0 0 */2 * *", function() {
 deleteJob.start();
 
 
-
+/*
+When the controller requests the information through a get request,
+I send it back through a json formatted response. 
+*/
 app.get('/freshlist', function (req, res) {
 	console.log("I received a GET request");
 
